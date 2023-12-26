@@ -129,7 +129,7 @@ export default function SpeedGraderStatusMenu({
             <TimeLateInput
               lateSubmissionInterval={lateSubmissionInterval}
               locale={locale}
-              renderLabelBefore={true}
+              renderLabelBefore={false}
               secondsLate={secondsLate}
               onSecondsLateUpdated={updateSubmission}
               width="5rem"

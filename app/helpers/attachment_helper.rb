@@ -101,6 +101,12 @@ module AttachmentHelper
     elsif params[:media_object_id].present?
       @media_id = params[:media_object_id]
       @media_object = MediaObject.by_media_id(@media_id).take
+    elsif params[:mediahref].present?
+      attachment_id_matched = params[:mediahref].match(/\d+/)
+      if attachment_id_matched.present?
+        attachment_id = attachment_id_matched[0]
+        @attachment = Attachment.not_deleted.find_by(id: attachment_id)
+      end
     end
   end
 

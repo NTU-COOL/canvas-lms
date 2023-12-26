@@ -34,6 +34,7 @@ ready(() => {
   }
 
   initializeTopNavPortal()
+  hiddenFlags.push('high_contrast')
 
   ReactDOM.render(
     <FeatureFlags hiddenFlags={hiddenFlags} disableDefaults={true} />,

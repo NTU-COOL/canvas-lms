@@ -19,6 +19,7 @@
 import {useScope as useI18nScope} from '@canvas/i18n'
 import React from 'react'
 import {Text} from '@instructure/ui-text'
+import {Button} from '@instructure/ui-buttons'
 
 import DraggableDashboardCard from './DraggableDashboardCard'
 import DashboardCardBackgroundStore from './DashboardCardBackgroundStore'
@@ -26,6 +27,7 @@ import MovementUtils from './MovementUtils'
 import {showNoFavoritesAlert} from './ConfirmUnfavoriteCourseModal'
 import type {Card} from '../types'
 import {clearDashboardCache} from '../dashboardCardQueries'
+import {isStaff} from '@canvas/util/checkRole'
 
 const I18n = useI18nScope('dashcards')
 
@@ -227,9 +229,16 @@ export default class DashboardCardBox extends React.Component<Props, State> {
         <div className="ic-DashboardCard__box">
           {/* @ts-expect-error */}
           <HeadingElement className="ic-DashboardCard__box__header">
-            {I18n.t(`Published Courses (%{count})`, {
-              count: I18n.n(publishedCourses.length),
-            })}
+            <span>
+              {I18n.t(`Published Courses (%{count})`, {
+                count: I18n.n(publishedCourses.length),
+              })}
+            </span>
+            {isStaff && (
+              <Button color="primary" margin="0 0 xxSmall 0" onClick={() => goToCourseBuilder()}>
+                {"+ " + I18n.t("Course")}
+              </Button>
+            )}
           </HeadingElement>
           {publishedCourses.length > 0 ? (
             <div className="ic-DashboardCard__box__container">{publishedCourses}</div>
@@ -240,9 +249,16 @@ export default class DashboardCardBox extends React.Component<Props, State> {
         <div className="ic-DashboardCard__box">
           {/* @ts-expect-error */}
           <HeadingElement className="ic-DashboardCard__box__header">
-            {I18n.t(`Unpublished Courses (%{count})`, {
-              count: I18n.n(unpublishedCourses.length),
-            })}
+            <span>
+              {I18n.t(`Unpublished Courses (%{count})`, {
+                count: I18n.n(unpublishedCourses.length),
+              })}
+            </span>
+            {isStaff && (
+              <Button color="primary" margin="0 0 xxSmall 0" onClick={() => goToCourseBuilder()}>
+                {"+ " + I18n.t("Course")}
+              </Button>
+            )}
           </HeadingElement>
           {unpublishedCourses.length > 0 ? (
             <div className="ic-DashboardCard__box__container">{unpublishedCourses}</div>

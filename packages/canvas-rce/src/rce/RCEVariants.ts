@@ -67,7 +67,7 @@ export function getMenuForVariant(variant: RCEVariant): MenusSpec {
       insert: {
         title: formatMessage('Insert'),
         items:
-          'instructure_links instructure_image instructure_media instructure_document instructure_icon_maker | instructure_equation inserttable instructure_media_embed | hr',
+          'instructure_links instructure_image instructure_media instructure_document instructure_icon_maker | instructure_equation inserttable media | hr',
       },
       tools: {
         title: formatMessage('Tools'),
@@ -75,7 +75,7 @@ export function getMenuForVariant(variant: RCEVariant): MenusSpec {
       },
       view: {
         title: formatMessage('View'),
-        items: 'instructure_fullscreen instructure_exit_fullscreen instructure_html_view',
+        items: 'instructure_html_view',
       },
     }
   }
@@ -161,7 +161,7 @@ export function getToolbarForVariant(
     },
     {
       name: formatMessage('Miscellaneous'),
-      items: ['removeformat', 'table', 'instructure_equation', 'instructure_media_embed'],
+      items: ['removeformat', 'table', 'instructure_equation', 'media'],
     },
   ]
 }

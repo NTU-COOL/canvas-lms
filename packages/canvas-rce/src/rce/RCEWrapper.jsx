@@ -1645,7 +1645,7 @@ class RCEWrapper extends React.Component {
           'instructure_condensed_buttons',
           'instructure_links',
           'instructure_html_view',
-          'instructure_media_embed',
+          'media',
           'a11y_checker',
           'wordcount',
           'instructure_wordcount',

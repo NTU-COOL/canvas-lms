@@ -352,7 +352,7 @@ export default function StatusBar(props) {
       <>
         <div className={css(styles.separator)} />
         {html_view && renderToggleHtml()}
-        {fullscreen && renderFullscreen()}
+        {/*fullscreen && renderFullscreen()*/}
         {resize_handle && renderResizeHandle()}
       </>
     )

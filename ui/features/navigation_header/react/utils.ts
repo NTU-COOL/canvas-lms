@@ -18,6 +18,7 @@
 
 import {useScope as useI18nScope} from '@canvas/i18n'
 import axios from '@canvas/axios'
+import {isStaff} from '@canvas/util/checkRole'
 
 const I18n = useI18nScope('Navigation')
 
@@ -58,7 +59,15 @@ export const getExternalApps = async (): Promise<ExternalTool[]> => {
   ).filter((app): app is ExternalTool => app !== null)
 }
 
+declare global {
+  interface Window {
+    courseBuilderId?: number
+  }
+}
+
+// Hide if not a staff #192
 export function getExternalTools(): ExternalTool[] {
+  const courseBuilderId = window.courseBuilderId ?? 0
   return Array.from(document.querySelectorAll('.globalNavExternalTool')).map(el => {
     const svg = el.querySelector('svg')
     return {
@@ -69,7 +78,11 @@ export function getExternalTools(): ExternalTool[] {
         ? null
         : (el.querySelector('img') as HTMLImageElement)?.getAttribute('src') || null,
     }
-  })
+  }).filter(tool => {
+      const isCourseBuilderTool =
+        tool.href === `/accounts/1/external_tools/${courseBuilderId}?launch_type=global_navigation`
+      return isStaff || !isCourseBuilderTool
+    })
 }
 
 export type ActiveTray =

@@ -314,7 +314,8 @@ export default function MobileGlobalMenu(props: Props) {
           </ToggleDetails>
         </List.Item>
 
-        <List.Item>
+        {/* Hide Help link #116 */}
+        {/* <List.Item>
           <ToggleDetails
             iconPosition="end"
             fluidWidth={true}
@@ -333,7 +334,7 @@ export default function MobileGlobalMenu(props: Props) {
               <HelpDialog onFormSubmit={props.onDismiss} />
             </View>
           </ToggleDetails>
-        </List.Item>
+        </List.Item> */}
       </List>
     </View>
   )
