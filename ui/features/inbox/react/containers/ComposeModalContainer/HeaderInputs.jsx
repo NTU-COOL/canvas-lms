@@ -144,7 +144,8 @@ const HeaderInputs = props => {
           />
         </Flex.Item>
       )}
-      {canIncludeObservers && props?.activeCourseFilter?.contextID && (
+      {/* Cool Mailbox Customize #537 */}
+      {/* {canIncludeObservers && props?.activeCourseFilter?.contextID && (
         <Flex.Item>
           <Button
             disabled={props.areObserversLoading}
@@ -168,7 +169,7 @@ const HeaderInputs = props => {
             )}
           </Button>
         </Flex.Item>
-      )}
+      )} */}
       {props.includeObserversMessages && (
         <Flex.Item>
           <Alert
