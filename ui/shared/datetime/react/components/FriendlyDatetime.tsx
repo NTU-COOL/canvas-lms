@@ -32,7 +32,16 @@ type Props = {
   prefix?: string
   prefixMobile?: string
   showTime?: boolean
+  responsiveFormat?: boolean
 }
+
+/*
+COOL Customize
+- https://gitlab.dlc.ntu.edu.tw/ntu-cool/canvas-lms/-/issues/550
+
+Change Log :
+1. [Enhancement] Added `responsiveFormat` prop to allow customizing the responsive date format. (#550)
+*/
 
 class FriendlyDatetime extends Component<Props> {
   time: HTMLTimeElement | null = null
@@ -42,6 +51,7 @@ class FriendlyDatetime extends Component<Props> {
     prefix: '',
     prefixMobile: null,
     showTime: false,
+    responsiveFormat: true,
   }
 
   // The original render function is really slow because of all
@@ -100,14 +110,20 @@ class FriendlyDatetime extends Component<Props> {
             }}
             aria-hidden="true"
           >
-            <span className="visible-desktop">
-              {/* something like: Mar 6, 2014 */}
-              {fixedPrefix + friendly}
-            </span>
-            <span className="hidden-desktop">
-              {/* something like: 3/3/2014 */}
-              {(fixedPrefixMobile || '') + fudged.toLocaleDateString()}
-            </span>
+            {this.props.responsiveFormat ? (
+              <>
+                <span className="visible-desktop">
+                  {/* something like: Mar 6, 2014 */}
+                  {fixedPrefix + friendly}
+                </span>
+                <span className="hidden-desktop">
+                  {/* something like: 3/3/2014 */}
+                  {(fixedPrefixMobile || '') + fudged.toLocaleDateString()}
+                </span>
+              </>
+            ) : (
+              <span>{fixedPrefix + friendly}</span>
+            )}
           </time>
         </span>
       )
