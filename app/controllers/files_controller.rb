@@ -1691,12 +1691,15 @@ class FilesController < ApplicationController
   end
 
   def validate_req_origin(req_origin)
+    return false if req_origin.nil?
+
     uri = URI.parse(req_origin)
     host = uri.host
 
-    allowed_domains = ['.testing.dlc.ntu.edu.tw', '.dlc.ntu.edu.tw']
+    allowed_domains = ['.testing.dlc.ntu.edu.tw', '.dlc.ntu.edu.tw', '.ntu.edu.tw']
     domain = allowed_domains.find { |domain| host.end_with?(domain)}
-    
+    return false unless domain
+
     # Only a single subdomain level is allowed for the specified allowed_domains
     subdomain = host.delete_suffix(domain)
     subdomain.match?(/^[^.]+$/)
