@@ -1696,13 +1696,15 @@ class FilesController < ApplicationController
     uri = URI.parse(req_origin)
     host = uri.host
 
-    allowed_domains = ['.testing.dlc.ntu.edu.tw', '.dlc.ntu.edu.tw', '.ntu.edu.tw']
+    allowed_domains = ['.testing.dlc.ntu.edu.tw', '.dlc.ntu.edu.tw', 'cool.ntu.edu.tw']
     domain = allowed_domains.find { |domain| host.end_with?(domain)}
     return false unless domain
 
+    return true if host == domain 
+
     # Only a single subdomain level is allowed for the specified allowed_domains
     subdomain = host.delete_suffix(domain)
-    subdomain.match?(/^[^.]+$/)
+    subdomain.match?(/^[^.]{1,1000}$/)
   end
 
   def open_cors
