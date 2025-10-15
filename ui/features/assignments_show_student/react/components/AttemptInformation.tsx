@@ -146,8 +146,11 @@ export default ({
         <div>
           <StudentViewContext.Consumer>
             {context => {
+              // Cool Customization: Group assignments only show feedback if the grade is visible to the student #564
+              // https://gitlab.dlc.ntu.edu.tw/ntu-cool/canvas-lms/-/issues/564
+              const isGradeVisible = !(submission?.gradeHidden || submission?.hideGradeFromStudent)
               const showFeedback =
-                (submission && submission.feedbackForCurrentAttempt) ||
+                (submission?.feedbackForCurrentAttempt && isGradeVisible) ||
                 !context.allowChangesToSubmission
               const button = (
                 <Button
