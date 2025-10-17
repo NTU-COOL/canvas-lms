@@ -158,7 +158,7 @@ export default class TotalGradeColumnHeader extends ColumnHeader<Props, State> {
   componentDidMount() {
     this.state = {
       ...this.state,
-      isShowingContent: false
+      isShowingContent: false,
     }
 
     if (this.props.grabFocus) {
@@ -196,12 +196,8 @@ export default class TotalGradeColumnHeader extends ColumnHeader<Props, State> {
 
   renderLink(url, text) {
     return (
-      <a
-        href={url}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-          { text }
+      <a href={url} target="_blank" rel="noopener noreferrer">
+        {text}
       </a>
     )
   }
@@ -234,6 +230,9 @@ export default class TotalGradeColumnHeader extends ColumnHeader<Props, State> {
               </Grid.Col>
 
               <Grid.Col textAlign="center" width="auto">
+                {/* Cool Customized: Popover for Total Grade Explanation */}
+                {/* https://gitlab.dlc.ntu.edu.tw/ntu-cool/canvas-lms/-/issues/326 */}
+                {/* https://gitlab.dlc.ntu.edu.tw/ntu-cool/canvas-lms/-/issues/569 */}
                 <Popover
                   renderTrigger={
                     <IconButton
@@ -246,15 +245,15 @@ export default class TotalGradeColumnHeader extends ColumnHeader<Props, State> {
                   }
                   isShowingContent={this.state.isShowingContent}
                   onShowContent={e => {
-                    this.setState({ isShowingContent: true })
+                    this.setState({isShowingContent: true})
                   }}
                   onHideContent={e => {
-                    this.setState({ isShowingContent: false })
+                    this.setState({isShowingContent: false})
                   }}
                   on={['click']}
-                  shouldContainFocus
-                  shouldReturnFocus
-                  shouldCloseOnDocumentClick
+                  shouldContainFocus={true}
+                  shouldReturnFocus={true}
+                  shouldCloseOnDocumentClick={true}
                   color="primary-inverse"
                   placement="bottom center"
                   mountNode={() => document.getElementById('main')}
@@ -263,58 +262,55 @@ export default class TotalGradeColumnHeader extends ColumnHeader<Props, State> {
                     <Text fontStyle="normal" size="x-small" weight="bold">
                       <ol>
                         <li>
-                          {
+                          {I18n.t(
+                            'custom.total_grade_popover_text1',
+                            'Total = sum of all scores student actually received in Assignment / sum of all scores student can received in Assignment * 100%. Groups weight should be applied if there is one. For detail explanation and examples please check '
+                          )}
+                          {this.renderLink(
                             I18n.t(
-                              'custom.total_grade_popover_text1',
-                              'Total = sum of all scores student actually received in Assignment / sum of all scores student can received in Assignment * 100%. Groups weight should be applied if there is one. For detail explanation and examples please check '
-                            )
-                          }
-                          {
-                            this.renderLink(
-                              I18n.t(
-                                'custom.how_to_manage_scores_url',
-                                'https://drive.google.com/file/d/19TSuAISnxKnP90Bs2l-007X6p47Mprpm/view'
-                                ),
-                              I18n.t(
-                                'custom.how_to_manage_scores',
-                                '"How to manage scores"'
-                              )) 
-                          }
-                          { ENV.LOCALE === 'zh-Hant' ? '。' : '.' }
+                              'custom.how_to_manage_scores_url',
+                              'https://drive.google.com/file/d/19TSuAISnxKnP90Bs2l-007X6p47Mprpm/view'
+                            ),
+                            I18n.t('custom.how_to_manage_scores', '"How to manage scores"')
+                          )}
+                          {ENV.LOCALE === 'zh-Hant' ? '。' : '.'}
                         </li>
                         <li>
-                          {
-                            I18n.t(
-                              'custom.total_grade_popover_text2',
-                              'Ungraded assignment items such as homework, and quizzes will be treated as zero points, and counted toward the final grade. Please ensure students receive grades on all graded assignment items.'
-                            )
-                          }
+                          {I18n.t(
+                            'custom.total_grade_popover_text2',
+                            'Ungraded assignment items such as homework, and quizzes will be treated as zero points, and counted toward the final grade. Please ensure students receive grades on all graded assignment items.'
+                          )}
                         </li>
                         <li>
-                          {
+                          {I18n.t(
+                            'custom.total_grade_popover_text3a',
+                            'Instructors may set up a custom grading scheme to adjust the letter grade. Detailed instructions can be found in the "'
+                          )}
+                          {this.renderLink(
                             I18n.t(
-                              'custom.total_grade_popover_text3a',
-                              'The default rule for score to grade conversion is based on the '
-                            )
-                          }
-                          {
-                            this.renderLink(
-                              I18n.t(
-                                'custom.grading_policy_url',
-                                 'https://www.aca.ntu.edu.tw/WebUPD/acaEN/GAADRules/110學生成績評量辦法.pdf'
-                              ),
-                              I18n.t(
-                                'custom.grading_policy',
-                                '"National Taiwan University Students Grading Policy"'
-                              )
-                            )
-                          }
-                          {
+                              'custom.grading_scheme_setup_instructions_url',
+                              'https://docs.google.com/document/d/1jasdLFrbDrAye5R_hlpW-6whZhp7pzxr/edit#heading=h.kqdf95ia7i6j'
+                            ),
                             I18n.t(
-                              'custom.total_grade_popover_text3b',
-                              ' When the score is a number with decimals, it will be rounded to the nearest whole number.'
+                              'custom.grading_scheme_setup_instructions',
+                              'Grading Scheme Setup Instructions'
                             )
-                          }
+                          )}
+                          {I18n.t(
+                            'custom.total_grade_popover_text3b',
+                            '," and you may also refer to the "'
+                          )}
+                          {this.renderLink(
+                            I18n.t(
+                              'custom.learning_assessment_guidelines_url',
+                              'https://www.dlc.ntu.edu.tw/assessinglearning/'
+                            ),
+                            I18n.t(
+                              'custom.learning_assessment_guidelines',
+                              'Learning Assessment Guidelines'
+                            )
+                          )}
+                          {I18n.t('custom.total_grade_popover_text3c', '".')}
                         </li>
                       </ol>
                     </Text>
