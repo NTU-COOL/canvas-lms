@@ -199,32 +199,32 @@
       <p style="text-align:left; font-size:12px;">
         <%= t(
           'grading_scheme_instruction_1',
-          '1. Default grading scheme is based on the %{href}, so users can’t add or edit the letter grades.',
-          href: link_to(
+          '1. Instructors are encouraged to set up a custom grading scheme based on the course difficulty, the target students, and the grading standards, to ensure that grades align with the course goals and design. Detailed instructions can be found in the "%{href1}," and you may also refer to the "%{href2}"',
+          href1: link_to(
             t(
-              'national_taiwan_university_students_grading_policy',
-              '"National Taiwan University Students Grading Policy"'
+              'grading_scheme_setup_instructions',
+              'Grading Scheme Setup Instructions'
             ),
             t(
-              'national_taiwan_university_students_grading_policy_url',
-              'https://www.aca.ntu.edu.tw/WebUPD/acaEN/GAADRules/110學生成績評量辦法.pdf'
+              'grading_scheme_setup_instructions_url',
+              'https://docs.google.com/document/d/1jasdLFrbDrAye5R_hlpW-6whZhp7pzxr/edit#heading=h.kqdf95ia7i6j'
+            )
+          ),
+          href2: link_to(
+            t(
+              'learning_assessment_guidelines',
+              'Learning Assessment Guidelines'
+            ),
+            t(
+              'learning_assessment_guidelines_url',
+              'https://www.dlc.ntu.edu.tw/assessinglearning/'
             )
           )
         ) %>
         <br />
         <%= t(
           'grading_scheme_instruction_2',
-          '2. Default grade to score converting rule is also based on the %{href}. If users customize the grading scheme, the converting score will be the median of the percentage scale.',
-          href: link_to(
-            t(
-              'national_taiwan_university_students_grading_policy',
-              '"National Taiwan University Students Grading Policy"'
-            ),
-            t(
-              'national_taiwan_university_students_grading_policy_url',
-              'https://www.aca.ntu.edu.tw/WebUPD/acaEN/GAADRules/110學生成績評量辦法.pdf'
-            )
-          )
+          '2. In accordance with the National Taiwan University Students Grading Policy, letter grade names cannot be added or edited. Only the score ranges associated with each grade can be modified.'
         ) %>
         <br />
       </p>
