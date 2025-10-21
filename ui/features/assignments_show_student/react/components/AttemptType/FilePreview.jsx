@@ -180,7 +180,9 @@ export default function FilePreview({submission, isOriginalityReportVisible}) {
     return (
       <div style={{textAlign: 'center'}}>
         <img alt="" src={previewUnavailable} style={{width: '150px'}} />
-        <div
+        {/* Cool Customization: Hide "Preview Unavailable" #562 */}
+        {/* https://gitlab.dlc.ntu.edu.tw/ntu-cool/canvas-lms/-/issues/562 */}
+        {/* <div
           style={{
             display: 'block',
             padding: `
@@ -192,7 +194,7 @@ export default function FilePreview({submission, isOriginalityReportVisible}) {
           }}
         >
           <Text size="large">{message}</Text>
-        </div>
+        </div> */}
       </div>
     )
   }

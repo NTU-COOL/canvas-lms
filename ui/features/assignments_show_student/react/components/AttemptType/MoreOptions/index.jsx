@@ -233,7 +233,7 @@ function CanvasFileChooser({allowedExtensions, courseID, onFileSelect, userID}) 
     <BaseUploadTool
       renderFooter={footerContents}
       icon={<IconFolderLine size="medium" color="primary" width="24px" height="24px" />}
-      label={I18n.t('Canvas Files')}
+      label={ENV?.LOCALE?.startsWith('en') ? 'Uploaded Files' : I18n.t('Canvas Files')}
     >
       {() => contents}
     </BaseUploadTool>

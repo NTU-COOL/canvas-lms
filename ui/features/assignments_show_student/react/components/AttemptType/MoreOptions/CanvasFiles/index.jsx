@@ -34,7 +34,14 @@ const I18n = useI18nScope('assignments_2_MoreOptions_CanvasFiles')
 
 class CanvasFiles extends React.Component {
   state = {
-    loadedFolders: {0: {id: '0', name: I18n.t('Root'), subFileIDs: [], subFolderIDs: []}},
+    loadedFolders: {
+      0: {
+        id: '0',
+        name: ENV?.LOCALE?.startsWith('en') ? 'All Files' : I18n.t('Root'),
+        subFileIDs: [],
+        subFolderIDs: [],
+      },
+    },
     loadedFiles: {},
     error: null,
     pendingAPIRequests: 0,
