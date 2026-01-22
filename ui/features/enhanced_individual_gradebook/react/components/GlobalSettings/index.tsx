@@ -170,12 +170,14 @@ export default function GlobalSettings({
           {/* {{!-- Intentionally left empty so this scales to smaller screens --}} */}
         </View>
         <View as="div" className="span8">
+          {/* hide option for NTU COOL, issue: https://gitlab.dlc.ntu.edu.tw/ntu-cool/canvas-lms/-/issues/119
           <IncludeUngradedAssignmentsCheckbox
             saveViewUngradedAsZeroToServer={gradebookOptions.saveViewUngradedAsZeroToServer}
             contextId={gradebookOptions.contextId}
             handleCheckboxChange={handleCheckboxChange}
             includeUngradedAssignments={gradebookOptions.customOptions.includeUngradedAssignments}
           />
+          */}
 
           <HideStudentNamesCheckbox
             handleCheckboxChange={handleCheckboxChange}
