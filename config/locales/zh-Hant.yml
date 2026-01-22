@@ -27964,7 +27964,7 @@ zh-Hant:
       name_pronunciation_header_tip: 請輸入您姓名的正確發音。
       name_pronunciation_label: 姓名發音：
       name_pronunciation_label_tip: 請輸入您姓名的正確發音。
-      no_links: "%{name} 尚未新增任何連結"
+      no_links: "尚未新增任何連結"
       no_name_pronunciation: 未提供姓名發音
       nothing_in_common: 您沒有具有共同的事項
       save_profile: 儲存個人檔案
