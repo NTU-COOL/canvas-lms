@@ -76,7 +76,19 @@ class MediaObjectsController < ApplicationController
 
   MISSED_MEDIA_ADDITIONAL_COST = 200
 
-  before_action :load_media_object, except: %i[create_media_object index]
+  # Workaround to RCE media objects for NTU COOL,
+  # issue: https://gitlab.dlc.ntu.edu.tw/ntu-cool/canvas-lms/-/issues/591
+  # currently NTU COOL did not host kaltura instance
+  def load_media_object_for_NTU_COOL
+    if feature_enabled?(:kaltura)
+      load_media_object
+    else
+      load_media_object_NTU_COOL
+    end
+  end
+  before_action :load_media_object_for_NTU_COOL, except: %i[create_media_object index]
+
+  # before_action :load_media_object, except: %i[create_media_object index]
   before_action :load_media_object_from_service, only: %i[show iframe_media_player]
   before_action :check_media_permissions, except: %i[create_media_object index media_object_thumbnail update_media_object]
   before_action(only: %i[update_media_object]) { check_media_permissions(access_type: :update) }
@@ -299,12 +311,15 @@ class MediaObjectsController < ApplicationController
   end
 
   def iframe_media_player
-    # media_links_use_attachment_id will be disabled by cool
+    # Workaround to RCE media objects preview for NTU COOL,
+    # issue: https://gitlab.dlc.ntu.edu.tw/ntu-cool/canvas-lms/-/issues/591
     # currently cool canvas didnt host kaltura instance
     # all media attachments will not have corresponse media_object
     # thus we must bypass following if condition
-    if !Account.site_admin.feature_enabled?(:media_links_use_attachment_id) && @attachment && @media_object
-      return redirect_to(media_object_iframe_path(@media_object.media_id, params: request.query_parameters))
+    if !feature_enabled?(:kaltura) && @attachment && !params[:mediahref].present?
+      return redirect_to(media_object_iframe_href_path(params: request.query_parameters.merge(
+        mediahref: "/files/#{@attachment.id}/download"
+      )))
     end
 
     # Exclude all global includes from this page

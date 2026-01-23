@@ -101,6 +101,17 @@ module AttachmentHelper
     elsif params[:media_object_id].present?
       @media_id = params[:media_object_id]
       @media_object = MediaObject.by_media_id(@media_id).take
+    end
+  end
+
+  # Workaround to RCE media objects for NTU COOL,
+  # issue: https://gitlab.dlc.ntu.edu.tw/ntu-cool/canvas-lms/-/issues/591
+  def load_media_object_NTU_COOL
+    if params[:attachment_id].present?
+      @attachment = Attachment.not_deleted.find_by(id: params[:attachment_id])
+    elsif params[:media_object_id].present?
+      @media_id = params[:media_object_id]
+      @media_object = MediaObject.by_media_id(@media_id).take
     elsif params[:mediahref].present?
       attachment_id_matched = params[:mediahref].match(/\d+/)
       if attachment_id_matched.present?
