@@ -29,8 +29,12 @@ const I18n = useI18nScope('conversations_2')
 export const ALL_COURSES_ID = 'all_courses'
 
 // Custom course name for NTU COOL, issue: https://gitlab.dlc.ntu.edu.tw/ntu-cool/canvas-lms/-/issues/205
-const genNTUCOOLCustomName = (courseName, courseCode) => {
-  return `${courseName ?? ''}${courseCode ? `(${courseCode})` : ''}`
+// Show course code only when course code exists, otherwise show default course name.
+// P.S. Need extra handling for pseudo 'All Courses' option
+const genNTUCOOLCustomName = (courseOption) => {
+  return courseOption?.id !== ALL_COURSES_ID && courseOption?.courseCode ?
+    courseOption.courseCode :
+    (courseOption?.contextName || courseOption?.courseNickname)
 }
 
 const filterOptions = (value, options) => {
@@ -42,7 +46,11 @@ const filterOptions = (value, options) => {
     } else {
       filteredOptions[key] = options[key]?.filter(
         option =>
-          genNTUCOOLCustomName(option.contextName || option.courseNickname, option.courseCode).toLowerCase().includes(value.toLowerCase())
+          genNTUCOOLCustomName(option).toLowerCase().includes(value.toLowerCase())
+          /*
+          option.contextName.toLowerCase().includes(value.toLowerCase()) ||
+          option.courseNickname?.toLowerCase().includes(value.toLowerCase()),
+          */
       )
     }
   })
@@ -58,7 +66,8 @@ const getOptionById = (id, options) => {
 const getCourseName = (courseAssetString, options) => {
   if (courseAssetString) {
     const courseInfo = getOptionById(courseAssetString, options)
-    return courseInfo ? genNTUCOOLCustomName(courseInfo.contextName, courseInfo.courseCode) : ''
+    // return courseInfo ? courseInfo.contextName : ''
+    return courseInfo ? genNTUCOOLCustomName(courseInfo) : ''
   } else {
     return ''
   }
@@ -183,7 +192,8 @@ const CourseSelect = props => {
               isHighlighted={option.assetString === highlightedOptionId}
               isSelected={option.assetString === selectedOptionId}
             >
-              {genNTUCOOLCustomName(option.courseNickname || option.contextName, option.courseCode)}
+              {/* option.courseNickname || option.contextName */}
+              {genNTUCOOLCustomName(option)}
               <ScreenReaderContent>
                 {I18n.t(` in %{listHeading}`, {listHeading: getGroupLabel(key)})}
               </ScreenReaderContent>

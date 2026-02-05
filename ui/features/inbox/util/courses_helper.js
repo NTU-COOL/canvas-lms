@@ -25,6 +25,7 @@ export const reduceDuplicateCourses = (enrollments, favoriteCourses) => {
       return {
         id: c.course._id,
         contextName: c.course.contextName,
+        courseCode: c.course.courseCode, // Custom course name for NTU COOL, issue: https://gitlab.dlc.ntu.edu.tw/ntu-cool/canvas-lms/-/issues/205
         assetString: c.course.assetString,
         concluded: c.concluded,
       }
