@@ -39,7 +39,14 @@
   <% else %>
     <% case assignment.grading_type %>
     <% when "points", "percent", "letter_grade", "gpa_scale" %>
-      <input type="text" id="grading-box-extended" autocomplete="off" maxlength="254"/>
+      <input
+        type="text"
+        id="grading-box-extended"
+        autocomplete="off"
+        maxlength="254"
+        <% # NTU COOL customization: https://gitlab.dlc.ntu.edu.tw/ntu-cool/canvas-lms/-/issues/568 %>
+        <%= 'placeholder=%' if assignment.grading_type == "percent" %>
+      />
     <% when "pass_fail" %>
       <select id="grading-box-extended" class="pass_fail_grading_type">
         <option value="">---</option>
