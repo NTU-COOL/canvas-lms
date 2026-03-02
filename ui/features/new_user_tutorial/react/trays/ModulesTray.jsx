@@ -17,8 +17,9 @@
  */
 
 import React from 'react'
-import {useScope as useI18nScope} from '@canvas/i18n'
+import CanvasI18n, {useScope as useI18nScope} from '@canvas/i18n'
 import TutorialTrayContent from './TutorialTrayContent'
+import { NTU_COOL_USER_MANUAL } from './NTUCOOLConstants'
 
 const I18n = useI18nScope('new_user_tutorial')
 
@@ -32,10 +33,7 @@ const ModulesTray = () => (
     links={[
       {
         label: I18n.t('How to publish handouts'),
-        href: I18n.t(
-          'how_to_publish_handouts_url',
-          'https://drive.google.com/file/d/1m0bpSWz7BHDjhOxFxQ7JqMDNB-u5UeDF/view?usp=sharing'
-        )
+        href: NTU_COOL_USER_MANUAL.HandoutsPublishing[CanvasI18n.locale?.toLowerCase()?.startsWith('zh') ? 'zh' : 'en']
       },
       {
         label: I18n.t('Tutorial Video: Modules'),

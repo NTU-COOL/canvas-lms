@@ -17,8 +17,9 @@
  */
 
 import React from 'react'
-import {useScope as useI18nScope} from '@canvas/i18n'
+import CanvasI18n, {useScope as useI18nScope} from '@canvas/i18n'
 import TutorialTrayContent from './TutorialTrayContent'
+import { NTU_COOL_USER_MANUAL } from './NTUCOOLConstants'
 
 const I18n = useI18nScope('new_user_tutorial')
 
@@ -30,10 +31,7 @@ const SyllabusTray = () => (
     links={[
       {
         label: I18n.t('How to create a course syllabus'),
-        href: I18n.t(
-          'how_to_create_a_course_syllabus_url',
-          'https://drive.google.com/file/d/16Tk4rAcgB47OxjErLIIxtKdJ9FnB_Jxg/view?usp=sharing'
-        )
+        href: NTU_COOL_USER_MANUAL.CourseSyllabusEditing[CanvasI18n.locale?.toLowerCase()?.startsWith('zh') ? 'zh' : 'en']
       },
       {
         label: I18n.t('Tutorial Video: Syllabus'),
