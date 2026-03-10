@@ -18,7 +18,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import {useScope as useI18nScope} from '@canvas/i18n'
+import CanvasI18n, {useScope as useI18nScope} from '@canvas/i18n'
 import $ from 'jquery'
 import customPropTypes from '../modules/customPropTypes'
 import Folder from '../../backbone/models/Folder'
@@ -197,12 +197,18 @@ class RestrictedRadioButtons extends React.Component {
       "RestrictedRadioButtons__dates_wrapper",
       {"RestrictedRadioButtons__dates_wrapper_hidden": this.state.selectedOption !== 'date_range'}
     )
+    // NTU COOL customization: https://gitlab.dlc.ntu.edu.tw/ntu-cool/canvas-lms/-/issues/599
+    const isZhHant = CanvasI18n.locale?.toLowerCase()?.startsWith('zh')
+    const NTUCoolAvailableDate = isZhHant ? I18n.t('Available From Date') : I18n.t('Available From')
+    const NTUCoolAvailableTime = isZhHant ? I18n.t('Available From') : I18n.t('From Time')
+    const NTUCoolUntilDate = isZhHant ? I18n.t('Available Until Date') : I18n.t('Available Until')
+    const NTUCoolUntilTime = isZhHant ? I18n.t('Available Until') : I18n.t('Until Time')
     return (
       <div className={styleObj}>
         <label
           htmlFor="dateSelectInput"
         >
-          <b>{I18n.t('Available From')}</b>
+          <b>{NTUCoolAvailableDate}</b>
         </label>
         <div className="dateSelectInputContainer controls">
           <input
@@ -219,7 +225,7 @@ class RestrictedRadioButtons extends React.Component {
         <label
           htmlFor="timeSelectInput"
         >
-          <b>{I18n.t('From Time')}</b>
+          <b>{NTUCoolAvailableTime}</b>
         </label>
         <div className="dateSelectInputContainer controls">
           <input
@@ -235,7 +241,7 @@ class RestrictedRadioButtons extends React.Component {
         </div>
         <div>
           <label htmlFor="lockDate">
-            <b>{I18n.t('Available Until')}</b>
+            <b>{NTUCoolUntilDate}</b>
           </label>
           <div className="dateSelectInputContainer controls">
             <input
@@ -251,7 +257,7 @@ class RestrictedRadioButtons extends React.Component {
           </div>
         </div>
         <label htmlFor="lockDateTime">
-          <b>{I18n.t('Until Time')}</b>
+          <b>{NTUCoolUntilTime}</b>
         </label>
         <div className="dateSelectInputContainer controls">
           <input
