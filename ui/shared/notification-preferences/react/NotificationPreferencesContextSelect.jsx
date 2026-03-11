@@ -60,7 +60,7 @@ export default function NotificationPreferencesContextSelect(props) {
         data-testid="settings-for-label"
       >
         <SimpleSelect.Option id="account" value="account" key="account">
-          {I18n.t('Account')}
+          {`${I18n.t('Account')} (${I18n.t('account_label_suffix', 'applies to all courses')})`}
         </SimpleSelect.Option>
         {sortedGroupedUniqueEnrollments.map(([termId, enrollments]) => (
           <SimpleSelect.Group renderLabel={enrollments[0].course.term.name} key={termId}>

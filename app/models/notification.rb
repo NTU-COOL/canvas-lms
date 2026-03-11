@@ -307,7 +307,7 @@ class Notification < Switchman::UnshardedRecord
       {
         name: :send_scores_in_emails,
         value: user.preferences[:send_scores_in_emails],
-        label: t(<<~TEXT),
+        label: I18n.locale == :en ? "Include scores in notifications." : t(<<~TEXT),
           Include scores when alerting about grades.
           If your email is not an institution email this means sensitive content will be sent outside of the institution.
         TEXT
@@ -496,11 +496,11 @@ class Notification < Switchman::UnshardedRecord
     when "Announcement Created By You"
       t(:announcement_created_by_you_display, "Announcement Created By You")
     when "Course Content"
-      t(:course_content_display, "Course Content")
+      t(:course_content_display, "Course Content Change")
     when "Files"
       t(:files_display, "Files")
     when "Discussion"
-      t(:discussion_display, "New Topic")
+      t(:discussion_display, "New Discussion Topic")
     when "DiscussionEntry"
       t(:discussion_post_display, "New Reply")
     when "DiscussionMention"
@@ -508,23 +508,23 @@ class Notification < Switchman::UnshardedRecord
     when "ReportedReply"
       t("Reported Reply")
     when "Due Date"
-      t(:due_date_display, "Due Date")
+      t(:due_date_display, "Due Date Changes")
     when "Grading"
-      t(:grading_display, "Grading")
+      t(:grading_display, "Grade Postings and Changes")
     when "Late Grading"
-      t(:late_grading_display, "Late Grading")
+      t(:late_grading_display, "Late Assignment Submission")
     when "All Submissions"
-      t(:all_submissions_display, "All Submissions")
+      t(:all_submissions_display, "Assignment Submission")
     when "Submission Comment"
-      t(:submission_comment_display, "Submission Comment")
+      t(:submission_comment_display, "Assignment Comments")
     when "Grading Policies"
-      t(:grading_policies_display, "Grading Policies")
+      t(:grading_policies_display, "Grading Policies Changes")
     when "Invitation"
-      t(:invitation_display, "Invitation")
+      t(:invitation_display, "Peer Review Invitation")
     when "Other"
-      t(:other_display, "Administrative Notifications")
+      t(:other_display, "Course Administrative Notifications")
     when "Calendar"
-      t(:calendar_display, "Calendar")
+      t(:calendar_display, "Calendar Event Created or Changes")
     when "Student Appointment Signups"
       t(:student_appointment_display, "Student Appointment Signups")
     when "Appointment Availability"
@@ -538,9 +538,9 @@ class Notification < Switchman::UnshardedRecord
     when "Added To Conversation"
       t(:added_to_conversation_display, "Added To Conversation")
     when "Conversation Created"
-      t(:conversation_created_display, "Conversations Created By Me")
+      t(:conversation_created_display, "Sent Messages")
     when "Membership Update"
-      t(:membership_update_display, "Membership Update")
+      t(:membership_update_display, "Joined a Group")
     when "Reminder"
       t(:reminder_display, "Reminder")
     when "Recording Ready"
@@ -561,24 +561,15 @@ class Notification < Switchman::UnshardedRecord
     when "Announcement"
       t(:announcement_description, "New Announcement in your course")
     when "Announcement Created By You"
-      mt(:announcement_created_by_you_description, <<~MD)
-        * Announcements created by you
-        * Replies to announcements you've created
-      MD
+      t(:announcement_created_by_you_description, "Notify when you post an announcement or receive replies to your announcement.")
     when "Course Content"
-      mt(:course_content_description, <<~MD)
-        Change to course content:
-
-        * Page content
-        * Quiz content
-        * Assignment content
-      MD
+      t(:course_content_description, "Notify when assignment, quiz, or page content changes.")
     when "Files"
       t(:files_description, "New file added to your course")
     when "Discussion"
-      t(:discussion_description, "New Discussion topic in your course")
+      t(:discussion_description, "Notify when a new discussion topic is created.")
     when "DiscussionEntry"
-      t(:discussion_post_description, "New reply on a topic you're subscribed to")
+      t(:discussion_post_description, "Notify when there is a new reply to a discussion topic you are subscribed to.")
     # Remove the feature flag explanation when :react_discussions_post feature flag is removed
     when "DiscussionMention"
       mt(:discussion_mention_description, <<~MD)
@@ -592,52 +583,23 @@ class Notification < Switchman::UnshardedRecord
     when "ReportedReply"
       t(:reported_reply_description, "New reported reply in a Discussion")
     when "Due Date"
-      t(:due_date_description, "Assignment due date change")
+      t(:due_date_description, "Notify new assignments, or due dates for assignments change.")
     when "Grading"
-      mt(:grading_description, <<~MD)
-        Includes:
-
-        * Assignment/submission grade entered/changed
-        * Grade weight changed
-      MD
+      t(:grading_description, "Notify when grades are posted or changed.")
     when "Late Grading"
-      mt(:late_grading_description, <<~MD)
-        *Instructor and Admin only:*
-
-        Late assignment submission
-      MD
+      mt(:late_grading_description, "(Instructor/Admin only) Notify when a student submits a late assignment.")
     when "All Submissions"
-      mt(:all_submissions_description, <<~MD)
-        *Instructor and Admin only:*
-
-        Assignment (except quizzes) submission/resubmission
-      MD
+      t(:all_submissions_description, "(Instructor/Admin only) Notify when a student submits an assignment (excluding quizzes).")
     when "Submission Comment"
-      t(:submission_comment_description, "Assignment submission comment")
+      t(:submission_comment_description, "Notify when there is a new comment on a graded assignment.")
     when "Grading Policies"
-      t(:grading_policies_description, "Course grading policy change")
+      t(:grading_policies_description, "Notify when grading weight changes.")
     when "Invitation"
-      mt(:invitation_description, <<~MD)
-        Invitation for:
-
-        * Web conference
-        * Group
-        * Collaboration
-        * Peer Review & reminder
-      MD
+      t(:invitation_description, "Notify when assigned a peer review.")
     when "Other"
-      mt(:other_description, <<~MD)
-        *Instructor and Admin only:*
-
-        * Course enrollment
-        * Report generated
-        * Content export
-        * Migration report
-        * New account user
-        * New student group
-      MD
+      t(:other_description, "(Instructor/Admin only) Notify when students accept course invitations, student groups are created, or system reports (e.g., quiz analysis) are generated.")
     when "Calendar"
-      t(:calendar_description, "New and changed items on your course calendar")
+      t(:calendar_description, "Notify when a new calendar event is created or an event time changes.")
     when "Student Appointment Signups"
       mt(:student_appointment_description, <<~MD)
         *Instructor and Admin only:*
@@ -655,22 +617,13 @@ class Notification < Switchman::UnshardedRecord
     when "Added To Conversation"
       t(:added_to_conversation_description, "You are added to a conversation")
     when "Conversation Created"
-      t(:conversation_created_description, "You created a conversation")
+      t(:conversation_created_description, "Notify when you send a message from the Inbox.")
     when "Recording Ready"
       t(:web_conference_recording_ready, "A conference recording is ready")
     when "Membership Update"
-      mt(:membership_update_description, <<~MD)
-        *Admin only: pending enrollment activated*
-
-        * Group enrollment
-        * accepted/rejected
-      MD
+      t(:membership_update_description, "Notify when you join a group.")
     when "Blueprint"
-      mt(:blueprint_description, <<~MD)
-        *Instructor and Admin only:*
-
-        Content was synced from a blueprint course to associated courses
-      MD
+      t(:blueprint_description, "(Instructor/Admin only) Notify when content is synced from a blueprint course to associated courses.")
     when "Content Link Error"
       mt(:content_link_error_description, <<~MD)
         *Instructor and Admin only:*

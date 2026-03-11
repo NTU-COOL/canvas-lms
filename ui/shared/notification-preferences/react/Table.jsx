@@ -16,7 +16,7 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 import {func} from 'prop-types'
-import {useScope as useI18nScope} from '@canvas/i18n'
+import CanvasI18n, {useScope as useI18nScope} from '@canvas/i18n'
 import NotificationPreferencesSetting from './Setting'
 import {NotificationPreferencesShape} from './Shape'
 import React, {useEffect, useState} from 'react'
@@ -31,15 +31,16 @@ import {TruncateText} from '@instructure/ui-truncate-text'
 import {View} from '@instructure/ui-view'
 
 const I18n = useI18nScope('notification_preferences')
+const isNTUCoolCustomI18n = CanvasI18n.locale?.toLowerCase()?.startsWith('zh') || CanvasI18n.locale?.toLowerCase()?.startsWith('en')
 
 const formattedCategoryNames = {
   courseActivities: () => I18n.t('Course Activities'),
   discussions: () => I18n.t('Discussions'),
-  conversations: () => I18n.t('Conversations'),
-  scheduling: () => I18n.t('Scheduling'),
+  conversations: () => {return isNTUCoolCustomI18n ? I18n.t('notification_inbox', 'Inbox') : I18n.t('Conversations')},
+  scheduling: () => {return isNTUCoolCustomI18n ? I18n.t('notification_calendar', 'Calendar') : I18n.t('Scheduling')},
   groups: () => I18n.t('Groups'),
   conferences: () => I18n.t('Conferences'),
-  alerts: () => I18n.t('Alerts'),
+  alerts: () => {return isNTUCoolCustomI18n ? I18n.t('system_alerts', 'System Alerts') : I18n.t('Alerts')},
 }
 
 const notificationCategories = {

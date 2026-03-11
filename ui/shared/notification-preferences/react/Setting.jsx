@@ -16,7 +16,7 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 import {arrayOf, func, string} from 'prop-types'
-import {useScope as useI18nScope} from '@canvas/i18n'
+import CanvasI18n, {useScope as useI18nScope} from '@canvas/i18n'
 import React, {useEffect, useState} from 'react'
 
 import {Flex} from '@instructure/ui-flex'
@@ -33,6 +33,7 @@ import {Text} from '@instructure/ui-text'
 import {Tooltip} from '@instructure/ui-tooltip'
 
 const I18n = useI18nScope('notification_preferences')
+const isNTUCoolCustomI18n = CanvasI18n.locale?.toLowerCase()?.startsWith('zh') || CanvasI18n.locale?.toLowerCase()?.startsWith('en')
 
 const preferenceConfigs = {
   immediately: {
@@ -43,12 +44,12 @@ const preferenceConfigs = {
   daily: {
     icon: IconCalendarDaySolid,
     color: 'success',
-    getScreenReaderLabel: () => I18n.t('Daily summary'),
+    getScreenReaderLabel: () => {return isNTUCoolCustomI18n ? I18n.t('daily_notification', 'Daily notification') : I18n.t('Daily summary')},
   },
   weekly: {
     icon: IconCalendarMonthSolid,
     color: 'success',
-    getScreenReaderLabel: () => I18n.t('Weekly summary'),
+    getScreenReaderLabel: () => {return isNTUCoolCustomI18n ? I18n.t('weekly_notification', 'Weekly notification') : I18n.t('Weekly summary')},
   },
   never: {
     icon: IconMutedLine,

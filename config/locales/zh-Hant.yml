@@ -597,7 +597,7 @@ zh-Hant:
   account_level_mastery_scales_a5bdff29: 帳戶級掌握程度
   account_level_notification_preferences_require_an__66467cd7: "帳戶級別通知偏好需要 account_id 以更新"
   account_level_notification_preferences_ui_update_f5e189a4: "帳戶級別通知偏好 UI 更新"
-  account_level_notifications_apply_to_all_courses_n_8b99c5b0: 帳戶等級通知會套用至所有課程。個別課程的通知可以在每個課程內變更，並會重寫這些通知。
+  account_level_notifications_apply_to_all_courses_n_8b99c5b0: 此處設定將預設套用至所有課程。您也可以針對個別課程設定通知，系統將以該課程的設定為優先。
   account_level_settings_manage_4fca6f8e: "帳戶級別設定 - 管理"
   account_name_13ed649: "%{account_name}"
   account_name_7f63a13: 帳戶名稱
@@ -10365,7 +10365,7 @@ zh-Hant:
   d2l_file_description: "D2L 匯出 .zip 格式"
   d2l_name: "D2L 轉換器"
   d_b59e2d8d: d
-  daily_notifications_will_be_delivered_around_day_t_a2b49202: "每天通知將在約 %{day_time} 時交付。您的每週通知將在 %{weekday} 的 %{start_time} 和 %{end_time} 之間交付。"
+  daily_notifications_will_be_delivered_around_day_t_a2b49202: "每日通知將於 %{day_time} 左右寄送；每週通知則會於 %{weekday} 的 %{start_time} 和 %{end_time} 之間寄送。"
   daily_summary_cf43f37c: 每日摘要
   danish_c18cdac8: 丹麥語
   dark_skin_tone_6c9e7c7c: 暗色皮膚色調
@@ -16458,8 +16458,7 @@ zh-Hant:
   include_quoted_reply_in_message_d0c8af8a: 包括訊息中引用的回覆
   include_scores_when_alerting_about_grade_changes_623ec201: 當提示成績變動時一併顯示分數。
   include_scores_when_alerting_about_grades_89728ae1: 當發出關於評分的提示時，將分數包括在內。
-  include_scores_when_alerting_about_grades_if_your__b221c2c8: |-
-          在通知成績變更時附上分數，請注意登記信箱應為您信任的信箱
+  include_scores_when_alerting_about_grades_if_your__b221c2c8: 在通知信中顯示成績
   include_sis_batch_info_f79dd131: "包括 SIS 批次資訊；"
   include_sis_batch_information_75bf66c4: "包括 SIS 批次資訊"
   include_speedgrader_in_assignment_header_menu_69cd8656: "在「作業標題選單」中納入 SpeedGrader"
@@ -21411,14 +21410,9 @@ zh-Hant:
     account_notification_display: 站內公告
     added_to_conversation_description: 您被加入收件人
     added_to_conversation_display: 您被加入收件人
-    all_submissions_description: |-
-        *只限教師及管理員：*
-        
-        作業（測驗除外）提交項目 / 重新提交項目
-    all_submissions_display: 所有提交項目
-    announcement_created_by_you_description: |-
-        *  您建立的公告
-        *  您所建立的公告的回覆
+    all_submissions_description: (僅限教師及管理員) 當有學生繳交作業 (測驗除外) 時發送通知
+    all_submissions_display: 作業繳交
+    announcement_created_by_you_description: 當您建立公告或有人回覆您的公告時發送通知
     announcement_created_by_you_display: 您建立的公告
     announcement_description: 您的課程中的新公告
     announcement_display: 公告
@@ -21431,13 +21425,10 @@ zh-Hant:
     appointment_cancelations_display: 取消預約
     appointment_signups_description: 您行事曆上的新預約
     appointment_signups_display: 登記預約
-    blueprint_description: |-
-        *只限教師及管理員：*
-        
-        課程內容會由計劃課程同步至關聯課程
-    blueprint_display: 計劃同步
-    calendar_description: 您課日行事曆上新的和更改的項目
-    calendar_display: 新增或變更您行事曆上的項目
+    blueprint_description: (僅限教師及管理員) 當課程內容從課程模版同步完成後發送通知
+    blueprint_display: 課程模版同步完成
+    calendar_description: 當有新的行事曆事件、或事件時間變更時發送通知
+    calendar_display: 行事曆事件新增或變更
     categories: 
       account_notification: 帳戶通知
       all_submissions: 所有提交項目
@@ -21471,19 +21462,14 @@ zh-Hant:
         
         學生互動的失效連結的位置和內容
     content_link_error_display: 內容連結錯誤
-    conversation_created_description: 您建立了一個交談
-    conversation_created_display: 我寄出信件
+    conversation_created_description: 當您在收件匣寄出信件時發送通知
+    conversation_created_display: 寄出信件
     conversation_message_description: 新收件箱訊息
     conversation_message_display: 收到新信件
-    course_content_description: |-
-        變更以下內容：
-        
-        * 頁面內容
-        * 測驗內容
-        * 作業內容
-    course_content_display: 課程內容
-    discussion_description: 您課程中的新討論主題
-    discussion_display: 新主題
+    course_content_description: 當作業、測驗或頁面內容變更時發送通知
+    course_content_display: 課程內容變更
+    discussion_description: 當課程中建立了新的討論主題時發送通知
+    discussion_display: 新討論主題
     discussion_mention_description: |-
         討論區中的新提及。
         
@@ -21491,41 +21477,23 @@ zh-Hant:
         已開啟
         討論區/通告重新設計
         功能標記的課程或帳戶。*
-    discussion_post_description: 您參與的討論主題新增貼文
-    discussion_post_display: 討論貼文
-    due_date_description: 作業截止日期更改
-    due_date_display: 截止日期
+    discussion_post_description: 當您訂閱或留言的討論主題有新回覆時發送通知
+    discussion_post_display: 新回覆
+    due_date_description: 當課程中有新作業、或作業截止日期修改時發送通知
+    due_date_display: 截止日期變更
     files_description: 新增至您課程的新文件
     files_display: 文件
-    grading_description: |-
-        包含: 
-        
-        * 作業/提交項目評分的輸入內容/更改內容
-        * 開啟作業成績提醒
-        * 變更評分權重
-    grading_display: 評分
+    grading_description: 當成績公佈或變更時發送通知
+    grading_display: 成績公佈與變更
     grading_notify_include_grade: 包括當提示關於成績更改時的分數。
-    grading_policies_description: 變更課程評分標準
-    grading_policies_display: 評分標準
-    invitation_description: |-
-        包含：
-        
-        * 網頁會議
-        * 小組
-        * 協作
-        * 同儕互評及提醒
-    invitation_display: 邀請
-    late_grading_description: |-
-        *僅限教師和管理員：*
-        
-        逾期作業繳交
-    late_grading_display: 逾期評分
-    membership_update_description: |-
-        *僅限管理員：包含*
-        
-        * 加入小組
-        * 已接受/已拒絕加入課程
-    membership_update_display: 成員更新
+    grading_policies_description: 當課程的評分權重變更時發送通知
+    grading_policies_display: 成績評量方式變更
+    invitation_description: 當被指派同儕互評時發送通知
+    invitation_display: 同儕互評邀請
+    late_grading_description: (僅限教師及管理員) 當學生繳交逾期作業時發送通知
+    late_grading_display: 逾期作業繳交
+    membership_update_description: 當您加入課程小組時發送通知
+    membership_update_display: 加入小組
     missing_description_description: "針對 %{category} 的通知"
     missing_display_display: "針對 %{category} 的通知"
     names: 
@@ -21609,16 +21577,8 @@ zh-Hant:
       web_conference_invitation: 網路會議邀請
       web_conference_recording_ready: 網路會議記錄就緒：
     no_subject: 無主旨
-    other_description: |-
-        *僅限教師和管理員：*
-        
-        * 課程註冊
-        * 已生成的報告
-        * 內容導出
-        * 遷移報告
-        * 新帳戶使用者
-        * 新學生群組
-    other_display: 管理通知
+    other_description: (僅限教師及管理員) 學生接受課程邀請、學生小組建立、系統報告生成 (如測驗分析報告等) 時發送通知
+    other_display: 課程管理通知
     recording_ready_display: 記錄就緒
     reminder_display: 提醒
     reported_reply_description: 在討論區中新報告的回覆
@@ -21627,11 +21587,17 @@ zh-Hant:
         
         學生登記預約
     student_appointment_display: 學生登記預約
-    submission_comment_description: 作業繳交評論
-    submission_comment_display: 提交項目評論
+    submission_comment_description: 當已公佈成績的作業收到評論時發送通知
+    submission_comment_display: 作業評論
     web_conference_recording_ready: 一項會議記錄就緒
   notification_policies_requires_the_communication_c_2e7ded08: "根據通知政策，需要提供通訊頻道 ID、通知類別，以及更新頻率"
   notification_preferences: 
+    account_label_suffix: 適用於所有課程
+    daily_notification: 每日通知
+    weekly_notification: 每週通知
+    notification_inbox: 收件匣
+    notification_calendar: 行事曆
+    system_alerts: 系統通知
     communication: 
       email: 
         display: 電郵地址
@@ -27536,7 +27502,7 @@ zh-Hant:
   settings_5aa0fd0c: 設定
   settings_changed_exceptions_e5247936: 已更改設定的例外情況：
   settings_for_assignment_name_c19565e1: "作業 %{name} 的設定"
-  settings_for_e2322172: "您可針對您的帳號 (適用於所有課程)、或是為各別課程進行通知頻率設定。"
+  settings_for_e2322172: "設定適用範圍"
   settings_for_env_dcae6f02: "%{env} 的設定"
   settings_for_name_7731a33d: "%{name} 的設定"
   settings_for_tab_label_3bff4468: "%{tab_label} 的設定"
