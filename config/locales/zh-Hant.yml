@@ -31030,8 +31030,8 @@ zh-Hant:
       default: "%a, %d %b %Y %H:%M:%S %z"
       long: "%B %d, %Y %H:%M"
       short: "%d %b %H:%M"
-      tiny: "%k:%M"
-      tiny_on_the_hour: "%k:%M"
+      tiny: "%H:%M"
+      tiny_on_the_hour: "%H:%M"
     less_than_a_minute_ago: 不到一分鐘以前
     pm: 下午
     ranges: 

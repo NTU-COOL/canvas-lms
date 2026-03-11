@@ -2244,8 +2244,8 @@ zh-Hant:
   time:
     event: "%{date} %{time}"
     formats:
-      tiny: "%P %l:%M"
-      tiny_on_the_hour: "%k:%M"
+      tiny: "%H:%M"
+      tiny_on_the_hour: "%H:%M"
   proper_noun_singular_genitive: "%{noun}"
   number:
     format:
