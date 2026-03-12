@@ -322,18 +322,10 @@ class Notification < Switchman::UnshardedRecord
     case category
     when "All Submissions",
          "Announcement Reply",
-         "Calendar",
-         "Course Content",
-         "Discussion",
          "Files",
          "Student Appointment Signups",
-         "DiscussionEntry",
          "Late Grading",
-         "Membership Update",
-         "Grading Policies",
-         "Due Date",
          "Other",
-         "Submission Comment",
          "Added To Conversation",
          "Content Link Error",
          "Blueprint",
@@ -352,15 +344,23 @@ class Notification < Switchman::UnshardedRecord
          "ReportedReply",
          "Announcement Created By You",
          "Conversation Created",
-         "TestImmediately"
+         "TestImmediately",
+         # NTU Cool customization(https://gitlab.dlc.ntu.edu.tw/ntu-cool/canvas-lms/-/issues/597), START
+         "Calendar",
+         "Course Content",
+         "Grading Policies",
+         "Due Date",
+         "Submission Comment",
+         "Grading"
+         # NTU Cool customization END
       FREQ_IMMEDIATELY
     when "TestWeekly"
       FREQ_WEEKLY
     else
       # 'Reminder',
-      # 'Grading'
       # 'Invitation'
       # 'TestDaily'
+      # NTU Cool customization: 'Discussion', 'DiscussionEntry', 'Membership Update'
       FREQ_DAILY
     end
   end

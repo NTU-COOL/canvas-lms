@@ -48,8 +48,10 @@ const notificationCategories = {
     'Due Date': {},
     'Grading Policies': {},
     'Course Content': {},
-    // Files: {},
-    // Announcement: {},
+    /* NTU Cool customization
+    Files: {},
+    Announcement: {},
+    */
     'Announcement Created By You': {},
     Grading: {},
     Invitation: {},
@@ -61,30 +63,38 @@ const notificationCategories = {
   discussions: {
     Discussion: {},
     DiscussionEntry: {},
-    // DiscussionMention: {}
+    // DiscussionMention: {} // NTU Cool customization
   },
   conversations: {
+    /* NTU Cool customization
     'Added To Conversation': {},
-    // 'Conversation Message': {},
+    'Conversation Message': {},
+    */
     'Conversation Created': {}
   },
   scheduling: {
-    // 'Student Appointment Signups': {},
-    // 'Appointment Signups': {},
-    // 'Appointment Cancelations': {},
-    // 'Appointment Availability': {},
+    /* NTU Cool customization
+    'Student Appointment Signups': {},
+    'Appointment Signups': {},
+    'Appointment Cancelations': {},
+    'Appointment Availability': {},
+    */
     Calendar: {}
   },
   groups: {
     'Membership Update': {},
   },
-  // conferences: {
-  //   'Recording Ready': {}
-  // },
+  /* NTU Cool customization
+  conferences: {
+    'Recording Ready': {}
+  },
+  */
   alerts: {
     Other: {},
+    /* NTU Cool customization
     'Content Link Error': {},
     'Account Notification': {},
+    */
   },
 }
 
