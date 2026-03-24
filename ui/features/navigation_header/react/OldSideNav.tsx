@@ -109,6 +109,12 @@ const Navigation = () => {
   })
 
   useEffect(() => {
+    // NTU Cool fix: https://gitlab.dlc.ntu.edu.tw/ntu-cool/canvas-custom-assets/-/issues/5
+    // external tool's id becomes '#context_external_tool_XXXX' and $(`#global_nav_${activeItem}_link`).closest('li')
+    // would find nothing, so add escape fix for LTI(external tools)
+    if (activeItem?.toLowerCase()?.startsWith('external_tools')) {
+      return
+    }
     $(`.${ACTIVE_CLASS}`).removeClass(ACTIVE_CLASS).removeAttr('aria-current')
     $(`#global_nav_${activeItem}_link`)
       .closest('li')
