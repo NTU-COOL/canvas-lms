@@ -28,6 +28,11 @@ import NewTabIndicator from './react/NewTabIndicator'
 import {QueryProvider} from '@canvas/query'
 import {getExternalTools} from './react/utils'
 
+// NTU Cool customization, issue: https://gitlab.dlc.ntu.edu.tw/ntu-cool/canvas-lms/-/issues/601
+// When Canvas instUI is ready, OldMobileNavigationForNTUCool part could be deleted by Canvas,
+// and we need to make sure new <MobileNavigation> works the same way.
+import OldMobileNavigationForNTUCool from './react/OldMobileNavigationForNTUCool'
+
 const I18n = useI18nScope('common')
 
 // #
@@ -101,7 +106,7 @@ ready(() => {
           if (mobileContextNavContainer) {
             ReactDOM.render(
               <QueryProvider>
-                <MobileNavigation />
+                <OldMobileNavigationForNTUCool externalTools={getExternalTools()} />
               </QueryProvider>,
               mobileContextNavContainer
             )
