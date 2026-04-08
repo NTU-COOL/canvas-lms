@@ -1,4 +1,4 @@
-Canvas LMS
+ Canvas LMS
 ======
 
 Canvas is a modern, open-source [LMS](https://en.wikipedia.org/wiki/Learning_management_system)
