@@ -1675,9 +1675,26 @@ class ApplicationController < ActionController::Base
     generate_page_view
   end
 
+  # Cool Customize
+  # Redirect to user-agreement when signing is required. #620
   def require_reacceptance_of_terms
+    user_agreement_id = Rails.configuration.external_tools["user_agreement_id"]
+    
     if session[:require_terms] && request.get? && !api_request? && !verified_file_request?
-      render "shared/terms_required", status: :unauthorized
+      # render "shared/terms_required", status: :unauthorized
+      return false if request.path == "/accounts/1/external_tools/#{user_agreement_id}"
+
+      # user-agreement redirects straight to dashboard after signing,
+      # Clear the stale flag here if the DB shows the user has already signed.
+      if @current_user
+        @current_user.reload
+        unless @domain_root_account.require_acceptance_of_terms?(@current_user)
+          session.delete(:require_terms)
+          return
+        end
+      end
+
+      redirect_to "/accounts/1/external_tools/#{user_agreement_id}?launch_type=global_navigation&display=borderless"
       false
     end
   end
