@@ -394,7 +394,10 @@ class CommunicationChannelsController < ApplicationController
 
         # User chose to continue with this cc/pseudonym/user combination on confirmation page
         if @pseudonym && params[:register]
-          @user.require_acceptance_of_terms = require_terms?
+          # @user.require_acceptance_of_terms = require_terms?
+          # Cool Customize:
+          # Skip terms validation here to bypass checkbox validation; users will accept terms via external user-agreement service.  #621
+          @user.require_acceptance_of_terms = false
           @user.attributes = params[:user].permit(:time_zone, :subscribe_to_emails, :terms_of_use) if params[:user]
 
           if params[:pseudonym]
@@ -448,6 +451,9 @@ class CommunicationChannelsController < ApplicationController
             # Login, since we're satisfied that this person is the right person.
             @pseudonym_session = PseudonymSession.new(@pseudonym, true)
             @pseudonym_session.save
+            # Cool Customize:
+            # Set require_terms after registration; users will be redirected to external user-agreement service.  #621
+            session[:require_terms] = true if @domain_root_account.require_acceptance_of_terms?(@user)
           else
             failed = true
           end

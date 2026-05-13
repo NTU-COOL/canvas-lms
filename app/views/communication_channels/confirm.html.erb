@@ -182,6 +182,8 @@ Which is you?", :count => @merge_opportunities.length %>
         </div>
       </div>
       <% end %>
+      <%# Cool Customize: Remove terms of service agreement checkbox at registration process #621 %>
+      <!--
       <div class="control-group">
         <div class="controls">
           <% if @root_account.require_acceptance_of_terms?(@user) %>
@@ -196,6 +198,7 @@ Which is you?", :count => @merge_opportunities.length %>
           <% end %>
         </div>
       </div>
+      -->
       <div class="control-group">
         <div class="controls">
           <% unless @merge_opportunities.empty? %>
