@@ -1555,7 +1555,9 @@ class UsersController < ApplicationController
 
     set_active_tab @tool.asset_string
     add_crumb(@current_user.short_name, user_profile_path(@current_user))
-    render Lti::AppUtil.display_template
+    # Cool Customize
+    # Add display_type parameter to enable lti borderless layout (app/views/layouts/borderless_lti.html.erb) #620
+    render Lti::AppUtil.display_template(@tool.display_type(placement), display_override: params[:display])
     timing_end = Process.clock_gettime(Process::CLOCK_MONOTONIC)
     InstStatsd::Statsd.timing("lti.user_external_tool.request_time", timing_end - timing_start, tags: { lti_version: @tool.lti_version })
   end
