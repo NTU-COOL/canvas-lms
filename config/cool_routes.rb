@@ -13,6 +13,12 @@ module CoolRoutes
                 end
               end
             end
+
+            # Cool Customized API Endpoint: Accept Terms of Service #631
+            scope module: :users do
+              post "users/:user_id/accept_terms" => "accept_terms#create",
+                   as: :cool_user_accept_terms
+            end
           end
         end
       end
