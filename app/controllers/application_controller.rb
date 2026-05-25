@@ -1690,6 +1690,7 @@ class ApplicationController < ActionController::Base
         @current_user.reload
         unless @domain_root_account.require_acceptance_of_terms?(@current_user)
           session.delete(:require_terms)
+          flash[:notice] = t("User Agreement signed successfully") if params[:user_agreement_signed] == "1"
           return
         end
       end
