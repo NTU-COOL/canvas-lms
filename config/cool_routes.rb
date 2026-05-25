@@ -1,6 +1,9 @@
 module CoolRoutes
   def self.extended(router)
     router.instance_exec do
+      # Cool Customized: Cancel user agreement signing flow #632
+      get  "user_agreement/cancel"     => "login#destroy"
+
       scope module: :cool do
         namespace :api do
           namespace :v1 do
