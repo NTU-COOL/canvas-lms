@@ -615,6 +615,32 @@ class AccountsController < ApplicationController
     render json: res
   end
 
+  # Cool Customize : Trigger re-acceptance of the Terms of Use #639
+  # @API Trigger re-acceptance of the Terms of Use
+  #
+  # Forces all users to re-accept the terms of use by bumping terms_of_service_content.terms_updated_at and root account settings.terms_changed_at.
+  # Only valid for root accounts. Requires the manage_account_settings permission.
+  #
+  # @returns { "terms_changed_at": <ISO8601 timestamp> }
+  def trigger_reaccept
+    return unless authorized_action(@account, @current_user, :manage_account_settings)
+    return render json: { error: t("This action is only available for root accounts") }, status: :bad_request unless @account.root_account?
+
+    now = Time.now.utc
+
+    terms = TermsOfService.ensure_terms_for_account(@account)
+    tos_content = terms.terms_of_service_content
+    if tos_content
+      tos_content.terms_updated_at = now
+      tos_content.save!
+    end
+
+    @account.settings[:terms_changed_at] = now
+    @account.save!
+
+    render json: { terms_changed_at: now }
+  end
+
   # @API Get help links
   #
   # Returns the help links for that account
