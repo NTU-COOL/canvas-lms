@@ -518,10 +518,13 @@
               <%= tos.label :passive, t("Allow passive acceptance of Terms of Service")%>
             <% end %>
           </fieldset>
+          <%# Cool Customize: Hide term of service editor #622 %>
+          <!--
           <div id="custom_tos_rce_container" style="<%= hidden %>">
             <textarea name="account[terms_of_service][content]"></textarea>
           </div>
           <div id="terms_of_service_preview_link"></div>
+          -->
         <% end %>
         <% if !@account.site_admin? &&
                @account.primary_settings_root_account? &&
